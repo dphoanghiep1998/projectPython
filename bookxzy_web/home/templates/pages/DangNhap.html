@@ -1,0 +1,26 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+<br/>
+
+{% if user.username %}
+    <p> <h2 style="color:red">Xin chào {{user.username }} ,bạn đang đăng nhập</h2> <a href= "{% url 'dangxuat' %}"> Đăng xuất</a></span> </p>
+{% else %}
+<center><h3 style="color:red" >Chào mừng đến với trang đăng nhập !</h3></center>
+
+<center>
+    <form  method="post" style="border:1px solid #000;margin-top:20px;width:500px">
+        {% csrf_token %}
+        <center style="margin-top:20px;margin-bottom:20px">
+        {% for key,value in form.errors.items  %}
+            <p style="color:red">Vui lòng nhập đúng tài khoản và mật khẩu</p>
+        {% endfor %}
+        <p>Tài khoản : {{form.username}}</p>
+        <p>Mật khẩu: {{form.password}}</p>
+        <input type="hidden" name="next" value="/home"/><br/>
+        <input type="submit" name="dangnhap" value="Đăng nhập"/>
+       <p>Nếu chưa có tài khoản vui lòng <a href="{% url 'dangky' %}">Đăng kí</a>!</p>
+        </center>
+    </form>
+</center>
+{% endif %}
+{% endblock content %}

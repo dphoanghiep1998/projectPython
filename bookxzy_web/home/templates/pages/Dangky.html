@@ -1,0 +1,18 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+<br/>
+{% if user.username %}
+    <p> <h2 style="color:red">Xin chào {{user.username }} ,bạn đang đăng nhập,vui lòng đăng xuất để đăng ký tài khoản mới</h2> <a href= "{% url 'dangxuat' %}"> Đăng xuất</a></span> </p>
+{% else %}
+<center><h3 style="color:red" >Chào mừng đến với trang đăng ký !</h3></center>
+<center>
+    <form action="." method="post" style="border:1px solid #000;margin-top:20px;width:500px">
+        {% csrf_token %}
+    <center style="margin-top:20px;margin-bottom:20px">{{form.as_p}}
+        <input type="submit" value="Đăng ký"/><br/>
+       <p>Nếu đã có tài khoản vui lòng <a href="{% url 'dangnhap' %}">Đăng nhập</a>!</p>
+    </center>
+    </form>
+</center>
+{% endif %}
+{% endblock content %}
