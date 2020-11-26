@@ -1,13 +1,14 @@
 body {
     font-family: Arial;
     font-size: 15px;
-    width: 1050px;
+    width: 80%;
     margin: 0px auto;
 }
 
 
 #menu_top {
     height: 80px;
+    position: relative;
 }
 
 #menu_top #top ul li a:hover {
@@ -37,7 +38,7 @@ body {
     height: 50px;
     line-height: 50px;
     color: #FFF;
-    padding: 0px 20px 0px 20px;
+    padding: 0px 20px;
 }
 
 #menu_top #bot ul {
@@ -46,12 +47,16 @@ body {
 
 #menu_top #bot ul li > .sub-menu {
     display: none;
+    position: absolute;
+    z-index: 9999;
 }
-ok
+
 
 
 #menu_top #bot ul li:hover .sub-menu {
+
     display: block;
+    
 }
 
 #menu_top #bot ul li a {
@@ -72,7 +77,7 @@ ok
 
 #slider {
     margin: 0 auto;
-    width: 1050px;
+    width: 100%;
     max-width: 100%;
     text-align: center;
     margin-bottom: 10px;
@@ -212,6 +217,9 @@ ok
  
 #main {
     display: flex;
+    margin-left: 8%;
+    margin-right: auto;
+
 }
 
 #main #left {

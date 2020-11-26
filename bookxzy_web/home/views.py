@@ -1,27 +1,28 @@
 from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Book,Chapter
+from .models import Book,Chapter,Category
 from .form import Dangky
 import os
 # Create your views here.
 def home_view(request):
-    return render(request,'pages/home.html')
+    return render(request,'home.html')
 def index(request):
-    return render(request,'pages/index.html')
+    return render(request,'index.html')
 def test1(request):
     book = Book.objects.all()
-    context = {'book':book}
-    return render(request,'pages/home.html',context)
+    category = Category.objects.all()
+    context = {'book':book,'cate':category}
+    return render(request,'home.html',context)
 def chaptest(request,id):
     book = Book.objects.get(pk=id)
     context = {'book':book}
-    return render(request,'pages/chaptest.html',context)
+    return render(request,'chaptest.html',context)
 def ndchap(request, id):
     chapper = Chapter.objects.get(pk=id)
     noidung = chapper.content.read().decode('utf-8')
     context = {'noidung':noidung,'title':chapper.title}
-    return render(request,'pages/noidung.html',context)
+    return render(request,'noidung.html',context)
 def SignUp(request):
     form = Dangky()
     if request.method == 'POST':
@@ -30,4 +31,10 @@ def SignUp(request):
             form.save()
             return HttpResponseRedirect('/home/dangnhap')
     context = {'form':form}
-    return render(request,'pages/Dangky.html',context)
+    return render(request,'Dangky.html',context)
+
+def TheLoai(request,name): #Lọc theo thể loại
+    category = Category.objects.get(name=name)
+    Bookcate = category.book_set.all()
+    contex = {'bookcate':Bookcate}
+    return render(request,'theloai.html',contex)
