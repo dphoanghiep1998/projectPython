@@ -31,13 +31,7 @@
                 <li><a href="{% url 'dangky' %}" title="Giới thiệu"><i class="fas fa-user-plus"></i>Đăng ký</a></li>
                 {% endif %}
             </ul>
-            <div>
-
-
-
-
-            </div>
-
+         
         </div>
         <div id="bot">
             <ul style="height: 40px;">
@@ -45,9 +39,9 @@
                 <li><a href="#">Truyện hot</a></li>
                 <li><a href="#">Thể loại</a>
                     <ul class="sub-menu">
-                    {% for i in cate  %}
-                        <li><a href={% url 'theloai' i.name %}>{{i.name}}</a></li>                      
-                    {% endfor %}
+                        {% for i in cate  %}
+                            <li><a href={% url 'theloai' i.name %}>{{i.name}}</a></li>                      
+                         {% endfor %}
                     </ul>
                 </li>
                 <li><a href="#">Xếp hạng</a></li>
@@ -92,7 +86,6 @@
     <div class="copyright text-center py-3">© 2020 Copyright:
         <a href="https://hieutrungtran.com/"> hieutrungtran.com</a>
     </div>
-
 </body>
 
 </html>

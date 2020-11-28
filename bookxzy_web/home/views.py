@@ -7,8 +7,6 @@ import os
 # Create your views here.
 def home_view(request):
     return render(request,'home.html')
-def index(request):
-    return render(request,'index.html')
 def test1(request):
     book = Book.objects.all()
     category = Category.objects.all()
@@ -36,5 +34,6 @@ def SignUp(request):
 def TheLoai(request,name): #Lọc theo thể loại
     category = Category.objects.get(name=name)
     Bookcate = category.book_set.all()
-    contex = {'bookcate':Bookcate}
+    cate = Category.objects.all()
+    contex = {'bookcate':Bookcate,'cate':cate}
     return render(request,'theloai.html',contex)
