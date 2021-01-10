@@ -1,0 +1,416 @@
+body {
+    font-family: Arial;
+    font-size: 16px;
+    width: 100%;
+    margin: 0px auto;
+    background-color: rgb(255, 253, 253);
+}
+
+#menu_top {
+    height: 80px;
+    z-index: 2;
+    width: 100%;
+}
+
+#menu_top #bot ul li a:hover {
+    background: #939493;
+}
+
+#menu_top ul {
+    background: #14425d;
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#menu_top ul li {
+    list-style: none;
+    float: left;
+}
+
+#menu_top #top ul li a {
+    text-decoration: none;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    color: #FFF;
+    padding: 0px 20px;
+}
+
+#menu_top #bot ul {
+    background: whitesmoke; 
+}
+
+#menu #bot ul li {
+    left: 50px;
+}
+
+#menu_top #bot ul li > .sub-menu {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    line-height: 40px;
+    border-right: 1px solid #ccc;
+    height: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+
+
+#menu_top #bot ul li:hover .sub-menu {
+
+    display: block;
+    
+}
+
+#menu_top #bot ul li a {
+    text-decoration: none;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: rgb(14, 13, 13);
+    padding: 0px 20px 0px 20px;
+    border-right: 1px solid #ccc;
+}
+
+#menu_top form {
+    margin:auto;
+    margin-left: 25%;
+}
+
+
+#content {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.page {
+    font-size: 18px;
+}
+
+.buttons {
+    text-align: center; 
+}
+
+.buttons button {
+    background-color: #14425d;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    margin-left: 15px;
+}
+
+.buttons button:hover {
+    background-color: teal;
+}
+
+.buttons a {
+    color: white;
+    text-decoration: none;
+}
+
+.buttons i {
+    font-size: 18px;
+    color: #fff;
+}
+
+.c-blog__heading.style-2 {
+    border-bottom: 1px solid #eee;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.c-blog__heading {
+    width: 100%;
+}
+.font-heading {
+    text-transform: uppercase;
+}
+
+.c-blog__heading.style-2 h2 {
+    margin: 0;
+}
+.c-blog__heading.style-2>* {
+    display: inline-block;
+    vertical-align: middle;
+}
+.h4, h4 {
+    font-size: 18px;
+}
+
+.main {
+    height: 300px;
+    overflow-y: scroll;
+    padding-left: 50px;
+}
+
+
+
+.free-chap {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: thin solid #ccc;
+    list-style: none;
+}
+
+.free-chap a {
+    margin-right: 200px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #14425d;
+}
+
+.free-chap span {
+    margin-right: 200px;
+}
+
+.listing-chapters_wrap show-more {
+    height: 200px;
+}
+
+
+#comment {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.card-box {
+    background: #FFF;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-box header {
+    padding: 8px 10px;
+    color: black;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 600;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+.card-box h3 {
+    border-bottom: 1px solid #e5e6e9;
+}
+
+.card-box header i {
+    margin: 0 10px;
+}
+
+.comment-form {
+    padding: 30px;
+}
+
+#rating {
+    border:none;
+    float:left;
+    padding-left: 2.5%;
+}
+
+#rating b {
+    padding-right: 1rem;
+}
+
+#rating>input{
+    display:none;
+}
+#rating>label:before{
+    margin: 5px;
+    font-size: 2rem;
+    font-family: FontAwesome;
+    display: inline-block;
+    content:"\f005";
+}
+
+#rating>label {
+    color:#ddd;
+    float:right;
+}
+
+#rating>label {
+    color:#ddd;
+}
+
+#rating>input:checked~label,
+#rating:not(:checked)>label:hover, 
+#rating:not(:checked)>label:hover~label {
+    color:#FFD700;
+}
+
+#rating>input:checked+label:hover,
+#rating>input:checked~label:hover,
+#rating>label:hover~input:checked~label,
+#rating>input:checked~label:hover~label {
+    color:#FFED85;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    background: #f2f2f2;
+}
+
+.comment-form .text-right {
+    text-align: right;
+}
+
+#story-detail .actions a, .comment-form [type="submit"], .replyComment button {
+    display: inline-block;
+    padding: 6px 16px;
+    white-space: nowrap;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.comment-form [type="submit"] {
+    border: none;
+    background: #14425d;
+    color: #fff;
+}
+
+.comment-list {
+    margin: 10px 0;
+    background: #fff;
+    color: #333;
+    padding-top: 3rem;
+}
+
+.comment {
+    padding: 3px 10px;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    background: #fff;
+    list-style-type: none;
+}
+
+.comment .avatar-letter {
+    float: left;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    line-height: 38px;
+    background: #14425d;
+    text-align: center;
+    color: #FFF;
+}
+
+.comment .comment-content {
+    border: 0;
+    margin-left: 55px;
+}
+
+.comment .comment-content .userinfo {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.comment .comment-content .userinfo a {
+    font-weight: 700;
+    float: left;
+    text-decoration: none;
+}
+
+.comment .comment-content .userinfo i {
+    color: #aaa;
+    font-size: 4px;
+    margin: 0 8px;
+    float: left;
+    height: 13px;
+    line-height: 14px;
+}
+
+.comment .comment-content .userinfo span {
+    color: #aaa;
+    font-size: 12px;
+}
+
+
+.comment .comment-content .message {
+    line-height: 21px;
+    overflow-x: hidden;
+}
+
+.comment .acts {
+    float: right;
+    text-align: right;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.comment .acts .action-reply-comment {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.comment .acts .action-love-comment {
+    color: #482ceb;
+    padding-left: 10px;
+    margin-left: 10px;
+    border-left: 1px solid #ddd;
+    text-decoration: none;
+}
+
+
+.comment .acts .action-love-comment span {
+    color: #aaa;
+}
+
+#comment-more {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#comment-more a {
+    display: inline-block;
+    outline: 0;
+    padding: 6px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    background-color: #14425d;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+#footer {
+    height: 6rem;
+    width: 100%;
+}
+
+#footer ul {
+    text-align: center;
+    width: 50%;
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-top: 2rem;
+}
+
+#footer .list-footer li {
+    display: inline-flex;
+    padding-right: 1.5rem;
+}
+
+#footer .list-footer a { 
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.copyright {
+    text-align: center;
+}
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body>
+    <div id="menu_top">
+        <div id="top">
+            <ul class="nav nav-tabs nav-fill" style="height: 50px; display: flex;">
+                <li><a href={% url 'home' %} title="Trang chủ" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li><a href="#" title="Fanpage"><i class="fab fa-facebook"></i> Fanpage</a></li>
+                <form class="example" action="/action_page.php">
+                    <input type="text" placeholder="Tìm kiếm..." name="search2">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+                {% if user.username %}
+                <p> Xin chào <b>{{ user.username}}</b></p><span style="margin-left:10px"> <li><a href="{% url 'dangxuat' %}"><i class="fas fa-sign-in-alt"></i>
+                            Đăng xuất</a></li>
+                {% else %}
+                <li><a href="{% url 'dangnhap' %}" title="Đăng nhập" class="active"><i class="fas fa-sign-in-alt"></i>
+                        Đăng nhập</a></li>
+                <li><a href="{% url 'dangky' %}" title="Đăng ký"><i class="fas fa-user-plus"></i> Đăng ký</a></li>
+                {% endif %}
+            </ul>
+         
+        </div>
+        <div id="bot">
+            <ul style="height: 40px;">
+                <li><a href="#">Thể loại <i class='fas fa-angle-down'></i></a>
+                    <ul class="sub-menu">
+                        {% for i in cate  %}
+                            <li><a href={% url 'theloai' i.name %}>{{i.name}}</a></li>                      
+                         {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="#">Truyện mới</a></li>
+                <li><a href="#">Truyện hot</a></li>
+                
+                <li><a href="#">Xếp hạng</a></li>
+                <li><a href="#">Truyện đã xem</a></li>
+            </ul>
+        </div>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+    <hr>
+    <div id="footer">
+        <ul class="list-footer">
+            <li><a href=" ">Liên hệ</a></li>
+            <li><a href=" ">Fanpage</a></li>
+            <li><a href=" ">Điều khoản dịch vụ</a></li>
+            <li><a href=" ">Chính sách bảo mật</a></li>
+        </ul>
+    </div>
+    <div class="copyright text-center py-3">© 2021 Copyright:
+        <a href="https://hieutrungtran.com/"> bookHUS.com</a>
+    </div>
+</body>
+
+</html>
