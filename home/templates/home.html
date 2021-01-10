@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for i in book%}
+{% comment %} <p></p><a href="{% url 'chap' i.id %}" style="decoration:none">{{i.BookName}}</a></p> {% endcomment %}
+{% endfor %}
+{% load static %}
+<div id="slider">
+    <input type="radio" name="slider" id="slide1" checked>
+    <input type="radio" name="slider" id="slide2">
+    <input type="radio" name="slider" id="slide3">
+    <input type="radio" name="slider" id="slide4">
+    <div id="slides">
+        <div id="overflow">
+            <div class="inner">
+                <div class="slide slide_1">
+                    <div class="slide-content">
+                        <img src={% static 'images/banner1.jpg' %} alt="">
+                    </div>
+                </div>
+                <div class="slide slide_2">
+                    <div class="slide-content">
+                        <img src={% static 'images/banner2.jpg' %} alt="">
+
+                    </div>
+                </div>
+                <div class="slide slide_3">
+                    <div class="slide-content">
+                        <img src={% static 'images/banner3.jpg' %} alt="">
+                    </div>
+                </div>
+                <div class="slide slide_4">
+                    <div class="slide-content">
+                        <img src={% static 'images/banner4.jpg' %} alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="controls">
+        <label for="slide1"></label>
+        <label for="slide2"></label>
+        <label for="slide3"></label>
+        <label for="slide4"></label>
+    </div>
+    <div id="bullets">
+        <label for="slide1"></label>
+        <label for="slide2"></label>
+        <label for="slide3"></label>
+        <label for="slide4"></label>
+    </div>
+</div>
+<div id="main">
+    <div id="left">
+        <nav class="navbar">
+            <a class="de_xuat"><i class="fas fa-hand-point-right"></i> Đề xuất</a>
+        </nav>
+
+        <div class="card-group">
+            <div class="card">
+                <a href=""><img src={% static 'images/conan1.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                        <span class="view">
+                            <i class="fas fa-eye"></i> 108
+                        </span>
+                        <div class="rating">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan2.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan3.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan4.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <a href=""><img src={% static 'images/conan5.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan6.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan7.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan8.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="right">
+        <nav class="navbar">
+            <a class="de_xuat"><i class="fas fa-medal"></i> Xem nhiều nhất</a>
+        </nav>
+        <div class="card-group">
+            <div class="card">
+                <a href=""><img src={% static 'images/conan1.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan2.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan3.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href=""><img src={% static 'images/conan4.jpg' %} alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>Thám tử lừng danh Conan</b></h5>
+                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a class="de_xuat"><i class="fa fa-tag"></i> TAG</a>
+        </nav>
+        <div class="tag">
+            <button><a href="">Khá Bảnh</a></button>
+            <button><a href="">Huấn Hoa Hồng</a></button>
+            <button><a href="">Trần Đức Bo</a></button>
+            <button><a href="">Trần Dần</a></button>
+            <button><a href="">Thanh Công Lề</a></button>
+            <button><a href="">Khệnh</a></button>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
