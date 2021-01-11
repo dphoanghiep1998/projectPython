@@ -235,7 +235,7 @@ hr {
 
 #main #left {
     float: left;
-    width: 100%;
+    width: 90%;
 }
 
 #main #left nav {
@@ -244,9 +244,8 @@ hr {
     line-height: 50px;
     display: flex;
     text-indent: 20px;
-    margin-right: 20px;
     color: #FFF;
-    width: 95%;
+    width: 100% ;
 }
 .card-group{
     float: left;
@@ -259,25 +258,31 @@ hr {
     transition: 0.3s;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 49px;
+    margin-right: auto;
     line-height: 10px;
 }
 
 #main #left .card-group {
     float: left;
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
 } 
 
 #main #left .card {
     float: left;
     height: 23rem;
-    width: 11.25rem;
+    width: 22%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 49px;
+    margin-right: 4%;
     line-height: 10px;
+}
+#main #left .card-group div.card:nth-child(4){
+    margin-right: 0;
+    float: right;
 }
 
 #main #left .card:hover {
@@ -354,9 +359,10 @@ hr {
 
 
 #main #right {
-    width: 35%;
+    width: 30%;
     min-height: 400px;
-    margin-left: 3px;
+    margin-left: 5%;
+    float: right;
 }
 
 .chitiet {
