@@ -246,11 +246,26 @@ hr {
     text-indent: 20px;
     margin-right: 20px;
     color: #FFF;
-    width: 94.2%;
+    width: 95%;
+}
+.card-group{
+    float: left;
+}
+.card{
+    float: left;
+    height: 23rem;
+    width: 11.25rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 49px;
+    line-height: 10px;
 }
 
-#main #left .card_group {
+#main #left .card-group {
     float: left;
+    width: 100%;
 } 
 
 #main #left .card {
@@ -261,7 +276,7 @@ hr {
     transition: 0.3s;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 3.3rem;
+    margin-right: 49px;
     line-height: 10px;
 }
 
@@ -315,6 +330,7 @@ hr {
   #main #left .pagination {
     display: inline-block;
     margin-top: 80px;
+    margin-left: 35%;
   }
   
   #main #left .pagination a {
@@ -338,8 +354,9 @@ hr {
 
 
 #main #right {
-    width: 33%;
+    width: 35%;
     min-height: 400px;
+    margin-left: 3px;
 }
 
 .chitiet {
