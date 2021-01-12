@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Book,Chapter,Category,Author
 from .form import Dangky,CommentForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import os
 # Create your views here.
 def home_view(request):
@@ -11,15 +12,27 @@ def index(request):
     return render(request,'index.html')
 
 def test1(request): #Hiển thị sách
-    book = Book.objects.all().order_by('-createDate')
+    booklist = Book.objects.all().order_by('-createDate')
     category = Category.objects.all()
     author = Author.objects.all()
+    paginator = Paginator(booklist, 1)
+    pageNumber = request.GET.get('page')
+    try:
+        book = paginator.page(pageNumber)
+    except PageNotAnInteger:
+        book = paginator.page(1)
+    except EmptyPage:
+        book = paginator.page(paginator.num_pages)
+
+
     context = {'book':book,'cate': category,'author':author}
     return render(request,'home.html',context)
 
 def chaptest(request,id): #Hiển thị danh sách chương
     book = Book.objects.get(pk=id)
+    cate = Category.objects.all()
     chap = book.chapter_set.all().order_by('-order')
+    first = chap[len(chap)-1]
     form = CommentForm()
     comment = book.comment.all().order_by('-time_pub')
     if request.method == "POST":
@@ -27,12 +40,13 @@ def chaptest(request,id): #Hiển thị danh sách chương
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(request.path)
-    context = {'book': book, 'chap': chap,'form':form,'comment':comment}
+    context = {'book': book, 'chap': chap,'form':form,'comment':comment,'cate':cate,'first':first}
     return render(request,'chaptest.html',context)
 
 def ndchap(request, id): # Hiển thị nội dung chương
     chapper = Chapter.objects.get(pk=id)
     book = Book.objects.filter(chapter = chapper)
+    cate = Category.objects.all()
     book = book[0]
     chap = book.chapter_set.all()
     for i in range(len(chap)-1): # taọ nút next và pre
@@ -51,7 +65,7 @@ def ndchap(request, id): # Hiển thị nội dung chương
     noidung = chapper.content.read().decode('utf-8')
     line = chapper.content.readline().decode('utf-8')
     context = {'noidung': noidung, 'title': chapper.title, 'book': book,'chap':chapper,'next':next,'pre':pre,
-               'line':line}
+               'line':line,'cate':cate}
 
     return render(request,'noidung.html',context)
 
@@ -61,7 +75,7 @@ def SignUp(request): # Đăng ký tài khoản
         form = Dangky(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/home/dangnhap')
+            return HttpResponseRedirect('/dangnhap')
     context = {'form':form}
     return render(request,'Dangky.html',context)
 
@@ -86,6 +100,6 @@ def search(request):
             book = Book.objects.filter(BookName__icontains = searchtext)
         else:
             book = None
-        context = {'book': book}
+        context = {'book': book,'searchtext':searchtext}
         return render(request, 'search.html', context)
 

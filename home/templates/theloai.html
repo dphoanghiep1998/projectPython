@@ -13,7 +13,7 @@
         <div class="card-group">
             {% for i in bookcate %}
             <div class="card">
-                <a href=""><img src={% static 'images/conan1.jpg' %} alt="Avatar" style="width:100%"></a>
+                <a href=""><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
                 <div class="container">
                     <h5><b>{{i.BookName}}</b></h5>
                     <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Đọc</a></button></p>

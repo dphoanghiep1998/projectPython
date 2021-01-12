@@ -40,17 +40,19 @@ class BookAdmin(admin.ModelAdmin):
         chap = obj.chapter_set.all()
         if len(chap) != 0:
             so = chap[len(chap)-1].order
+
         for afile in request.FILES.getlist('multiple'):
             # name = afile.name.split("/")
             # name = name[-1].split(".")
-            # name = name[0]
-            line = afile.readline().decode('utf-8').rstrip()
-            while not line:
-                line = afile.readline().rstrip().decode('utf-8').rstrip().strip()
+            # # name = name[0]
+            # line = afile.readline().decode('utf-8').rstrip()
+            # while not line:
+            #     line = afile.readline().rstrip().decode('utf-8').rstrip().strip()
 
-            line = line.replace(":", " ")
-            line = re.sub('["~!@#$%^&*:?|"]', '', line)
+            # line = line.replace(":", " ")
             so +=1
+            line = "Chương " + str(so)
+
             instance = Chapter(title = line ,book = obj , content = afile,order = so)
             instance.save()
 

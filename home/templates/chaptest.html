@@ -1,8 +1,188 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends "base.html" %}
 
-{% for j in book.chapter_set.all %}
+
+
+
+{% block content%}
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'css/infor.css' %}>
+{% comment %} {% for j in book.chapter_set.all %}
 <p><a href="{% url 'noidung' j.id %}" style="decoration:none">{{ j.title }}</a></p>
 
-{% endfor %}
-{% endblock content %}
+{% endfor %} {% endcomment %}
+<div id="content">
+    <div class="breadcrumb w-breadcrumb">
+        <div class="container">
+            <ul class="row">
+                <li>
+                    <a href="/">Trang chủ</a><i class="fas fa-angle-right"></i>
+                </li>
+                <span class="breadcrumb-divider"></span>
+                <li class="active">
+                    <a href="#">Conan-Tập 96</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="p20 bg-white content-col relative">
+        <div class="infor">
+            <div class="book-thumb " style="position:relative;">
+                <img src='{{book.imageBook.url}}'
+                    class="img-fluid box-shadow-bold">
+                <div class="book-interactive">
+                    <span class="view">
+                        <i class="fas fa-eye"></i> 108
+                    </span>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="book-info">
+                <div class="book-info-text">
+                    <h1>Conan-Tập 96</h1>
+                    <div class="book-info-line">
+                        <span>Tác giả:</span>
+                        <h3 class="detail-tag"><a class="author-detail hightlight click_author_info" href="{% url 'tacgia' book.author %}">{{book.author}}</a></h3>
+                    </div>
+                    <p>Thể loại: <a class="category-detail hightlight click_category" href="">Trinh thám</a></p>
+                    <div class="book-info-line">
+                        <span>Nhà xuất bản:</span>
+                        <h3 class="detail-tag"><a class="publisher-detail hightlight click_publisher_info" href="">NXB
+                                Kim Đồng</a></h3>
+                    </div>
+                    <p>Ngày cập nhật: 26/11/2020</p>
+                </div>
+                <div class="ga_click" data-gacategory="convert web" data-gaaction="click book" data-galabel="read">
+                    <a class="book-info-link" href="{% url 'noidung' first.id %}">Đọc
+                        sách</a>
+                </div>
+
+                <div class="fbpx-track" type="track" eventname="ViewContent"
+                    params="{&quot;content_type&quot;:&quot;product&quot;,&quot;content_ids&quot;:[10990],&quot;content_name&quot;:&quot;\u0110\u1eafc nh\u00e2n t\u00e2m&quot;,&quot;content_catalogue&quot;:&quot;Ngh\u1ec7 thu\u1eadt s\u1ed1ng&quot;}"
+                    style="display: none;"></div>
+                <div class="clearfix"></div>
+                <div id="book-desc" class="boxcontentdesc text-justify short radio-b-desc pb20 book-info-desc">
+                    <!--<span class="desc"></span>
+                    <div class="text-right">
+                        <p id="read-more" class="read-more book-info-see-more" style="cursor: pointer" data-parent="#book-desc">Đọc thêm</p>
+                    </div>-->
+                    <div class="desc-full">
+                        <h3>Giới Thiệu</h3>
+                        <p>Cút
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <nav class="navbar">
+                    <a class="de_xuat"><i class='fas fa-code-branch'></i> Liên quan</a>
+                </nav>
+                <div class="card-group">
+                    <div class="card">
+                        <a href=""><img src="./images/conan1.jpg" alt="Avatar"></a>
+                        <div class="container1">
+                            <h5><b>Thám tử lừng danh Conan</b></h5>
+                            <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                            <span class="view">
+                                <i class="fas fa-eye"></i> 108
+                            </span>
+                            <div class="rating">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a href=""><img src="./images/conan2.jpg" alt="Avatar"></a>
+                        <div class="container1">
+                            <h5><b>Thám tử lừng danh Conan</b></h5>
+                            <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                            <span class="view">
+                                <i class="fas fa-eye"></i> 108
+                            </span>
+                            <div class="rating">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a href=""><img src="./images/conan3.jpg" alt="Avatar"></a>
+                        <div class="container1">
+                            <h5><b>Thám tử lừng danh Conan</b></h5>
+                            <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                            <span class="view">
+                                <i class="fas fa-eye"></i> 108
+                            </span>
+                            <div class="rating">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="c-blog__heading style-2 font-heading">
+            <h2 class="h4">
+                <i class="far fa-calendar-alt"></i>
+                DANH SÁCH CHƯƠNG
+            </h2>
+        </div>
+
+        <div class="listing-chapters_wrap show-more">
+            <ul class="main version-chap">
+                {% for j in chap %}
+                
+                <li class="wp-manga-chapter free-chap">
+                    <a href="{% url 'noidung' j.id %}"> 
+                        {{ j.title }}
+                    </a>
+                    <span class="chapter-release-date">
+                        <i class="far fa-clock"></i> {{ j.time_pub }}
+                    </span>
+                    <span class="chapter-total-view">
+                        <i class="fas fa-eye"></i> 4
+                    </span>
+                </li>
+                {% endfor %}
+                
+
+            </ul>
+        </div>
+
+    </div>
+
+    {% if user.username%}
+    <form method="post" action="{% url 'chap' book.id %}" style="margin-left:100px">
+        {% csrf_token %}
+        <label>Bình luận</label><br />
+        <p>{{ form.content }}</p>
+        <input type="submit" value="Bình luận">
+        {% else %}
+        <h5>Nếu muốn để lại comment , vui lòng <a href="{% url 'dangnhap' %}" style="decoration:none">đăng nhập</a></h5>
+        {% endif %}
+    </form>
+    {% for content in comment %}
+    <strong>{{ content.author }}</strong>
+    <h6>{{ content.time_pub }}</h6>
+    <p>{{ content.content | linebreaks }}</p>
+    {% endfor %}
+    {% endblock content%}

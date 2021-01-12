@@ -18,12 +18,13 @@
             <ul class="nav nav-tabs nav-fill" style="height: 50px; display: flex;">
                 <li><a href={% url 'home' %} title="Trang chủ" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="#" title="Fanpage"><i class="fab fa-facebook"></i> Fanpage</a></li>
-                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+                <form  class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
                     <div>
-                    <input type="text" placeholder="Tìm kiếm..." name="search2" style="height: 25px;width:200px ;">
+                    <input type="text" placeholder="Tìm kiếm..." name="search" style="height: 25px;width:200px ;">
                     <button type="submit" style="height: 31px"><i class="fa fa-search"></i></button>
                 </div>
             </form>
+            
            
        
                 {% if user.username %}
