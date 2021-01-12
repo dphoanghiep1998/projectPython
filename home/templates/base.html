@@ -19,9 +19,13 @@
                 <li><a href={% url 'home' %} title="Trang chủ" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="#" title="Fanpage"><i class="fab fa-facebook"></i> Fanpage</a></li>
                 <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
-                <input class="form-control mr-sm-2" type="search" placeholder="Nhập từ khóa" aria-label="Nhập từ khóa" name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                    <div>
+                    <input type="text" placeholder="Tìm kiếm..." name="search2" style="height: 25px;width:200px ;">
+                    <button type="submit" style="height: 31px"><i class="fa fa-search"></i></button>
+                </div>
             </form>
+           
+       
                 {% if user.username %}
                 <p> Xin chào <b>{{ user.username}}</b></p><span style="margin-left:10px"> <li><a href="{% url 'dangxuat' %}"><i class="fas fa-sign-in-alt"></i>
                             Đăng xuất</a></li>

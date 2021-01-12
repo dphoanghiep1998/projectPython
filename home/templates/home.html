@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for i in book%}
-{% comment %} <p></p><a href="{% url 'chap' i.id %}" style="decoration:none">{{i.BookName}}</a></p> {% endcomment %}
-{% endfor %}
+
 {% load static %}
 <div id="slider">
     <input type="radio" name="slider" id="slide1" checked>
@@ -80,6 +78,16 @@
             {% endif %}
             {% endfor %}
         </div>
+
+        <div class="center">
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
 
     </div>
 
