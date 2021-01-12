@@ -42,55 +42,11 @@
             <div class="content">
                 <h3 class="module-title"><b>Tất cả thể loại</b></h3>
                 <ul class="nav">
+                    {% for i in cateall %}
                     <li>
-                        <a target="_self" href="">Đam mỹ</a>
+                        <a target="_self" href="">{{i.name}}</a>
                     </li>
-                    <li>
-                        <a target="_self" href="">Action</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adult</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adventure</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Anime</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Chuyển Sinh</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Action</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adult</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adventure</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Anime</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Chuyển Sinh</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Action</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adult</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Adventure</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Anime</a>
-                    </li>
-                    <li>
-                        <a target="_self" href="">Chuyển Sinh</a>
-                    </li>
-
+                    {%endfor%}
                 </ul>
             </div>
         </div>

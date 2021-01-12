@@ -35,5 +35,8 @@ def TheLoai(request,name): #Lọc theo thể loại
     category = Category.objects.get(name=name)
     Bookcate = category.book_set.all()
     cate = Category.objects.all()
-    contex = {'bookcate':Bookcate,'cate':cate}
+    cateall = Category.objects.all()
+    contex = {'bookcate':Bookcate,'cate':cate,'cateall':cateall}
     return render(request,'theloai.html',contex)
+
+
