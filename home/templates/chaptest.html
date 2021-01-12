@@ -169,8 +169,59 @@
         </div>
 
     </div>
+    
+    <div id="comment">
+        {% if user.username%}
+        <div class="card-box" id="comments">
+            <header>
+                <h3><i class="far fa-comment-alt"></i>Bình Luận</h3>
+            </header>
+            <form class="comment-form" method="post" action="{% url 'chap' book.id %}"> <input type="hidden" name="storyID" id="storyID" value="16815">
+                {% csrf_token %}
+                <input type="hidden" name="replyTo" value="Bình luận"> <textarea aria-label="Bình luận" id="id_content"
+                    name="content" placeholder="Bình luận tại đây!"></textarea>
+                <div class="text-right"><button type="submit">Gửi</button></div>
+            </form>
 
-    {% if user.username%}
+            <div id="rating">
+                <b>Đánh giá truyện nhé <span style='font-size:16px;'>&#128521;</span></b>
+                <input type="radio" id="star5" name="rating" value="5" />
+                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+            </div>
+            {% else %}
+        <h5>Nếu muốn để lại comment , vui lòng <a href="{% url 'dangnhap' %}" style="decoration:none">Đăng nhập</a></h5>
+        {% endif %}
+            <ul id="comment-list" class="comment-list">
+                {% for content in comment %}
+                <li id="comment91878" class="comment clearfix " data-user-id="324405" data-parent="0" data-id="91878">
+                    <span class="avatar-letter">H</span>
+                    <div class="comment-content">
+                        <p class="userinfo"><a href="#">{{ content.author }}</a> <i class="fa fa-circle"></i>
+                            <span>{{ content.time_pub }}</span>
+                        </p>
+                        <p class="message">{{ content.content | linebreaks }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div id="comment-more"><a href="#" data-paged="2" rel="nofollow">Xem thêm</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- {% if user.username%}
     <form method="post" action="{% url 'chap' book.id %}" style="margin-left:100px">
         {% csrf_token %}
         <label>Bình luận</label><br />
@@ -184,5 +235,5 @@
     <strong>{{ content.author }}</strong>
     <h6>{{ content.time_pub }}</h6>
     <p>{{ content.content | linebreaks }}</p>
-    {% endfor %}
+    {% endfor %} -->
     {% endblock content%}
