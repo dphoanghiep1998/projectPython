@@ -2,6 +2,7 @@ from django import forms
 import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from .models import Comment
 
 
 class Dangky(forms.Form):
@@ -31,5 +32,19 @@ class Dangky(forms.Form):
         User.objects.create_user(username=self.cleaned_data['username'] , email=self.cleaned_data['email'],
                                  password=self.cleaned_data['pass2'])
 
-class DangNhap(forms.ModelForm):
-    pass
+class CommentForm(forms.ModelForm):
+    def __init__(self,*args,**kwargs):
+        self.author = kwargs.pop("author",None)
+        self.book = kwargs.pop("book",None)
+        super().__init__(*args,**kwargs) # Chạy lại hàm cha
+    def save(self,commit = True):  # override hàm save
+        comment = super().save(commit = False)
+        comment.author = self.author
+        comment.book = self.book
+        comment.save()
+
+    class Meta:
+        model = Comment
+        fields = ["content"] #Chỉ hiện trường content của model
+
+

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if book == None or book.count == 0 %}
+Không tìm thấy giá trị phù hợp yêu cầu
+{% else %}
+{% for i in book%}
+<center><p><a href="{% url 'chap' i.id %}" style="decoration:none">{{i.BookName}}</a></p></center>
+{% endfor %}
+{% endif%}
+{% endblock %}

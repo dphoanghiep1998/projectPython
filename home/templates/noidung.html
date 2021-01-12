@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1 style="text-align: center"> {{title}} </h1>
-<div style="margin-left:100px;margin-right:100px;margin-top:50px">{{ noidung | linebreaks }} </div>
+<div style="margin-left:100px;margin-right:100px;margin-top:50px">{{ noidung | safe | linebreaks }} </div>
 
 {% endblock content %}

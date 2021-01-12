@@ -88,6 +88,67 @@ body {
     padding-right: 5%;
 }
 
+#content .chapters {
+    margin-left: 5px;
+    
+}
+
+#content select {
+    border-radius: 4px;
+    color: #555;
+    display: inline-block;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    width: 20%;
+
+}
+
+.chap-nav {
+  
+    margin-bottom: 16px;
+    margin-top: 32px;
+}
+
+.home {
+    width: 40px;
+    text-align: center;
+    color: #14425d;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+.home i {
+    margin-left: 400px;
+}
+
+.pre i {
+    width: 40px;
+    text-align: center;
+    color: #14425d;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    margin-left: 390px;
+}
+
+.next i {
+    width: 40px;
+    text-align: center;
+    color: #14425d;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+}
+
+
+
+
+  
+
 h1 {
     text-align: center;
 }
