@@ -1,5 +1,5 @@
 import re
-
+import datetime
 from django.contrib import admin
 from .models import Book,Author,Category,Chapter,Comment
 # Register your models here.
@@ -28,9 +28,11 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ['BookName'] # thanh search bar tìm kiếm theo tên sách
     fieldsets = [
         ('Tên Sách',{'fields':['BookName']}),('Ngày tạo',{'fields':['createDate']}),
+        ('Mô tả', {'fields': ['description']}),
         ('Trạng thái',{'fields': ['status']}),
         ('Bìa sách',{'fields':['imageBook']}),('Tác giả',{'fields':['author']}),
-        ('Thể loại',{'fields':['category'],'classes': ['collapse']})  # Phân chia các trường trên trang admin
+        ('Thể loại',{'fields':['category'],'classes': ['collapse']}),  # Phân chia các trường trên trang admin
+        ('Lượt xem', {'fields': ['click']})
     ]
     inlines = [ChapterInlines,CommentInline,] # Đưa chapter vào Book trên trang admin
 
@@ -61,4 +63,3 @@ admin.site.register(Book,BookAdmin) #Tích hợp BookAdmin đã tạo ở trên
 admin.site.register(Author,AuthorAdmin)
 admin.site.register(Category)
 admin.site.register(Comment)
-

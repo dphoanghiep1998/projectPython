@@ -15,7 +15,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=200,null=True,blank=True)
+    description = models.TextField(default="Đang cập nhật",max_length = 2000)
     def __str__(self):
         return self.name
 
@@ -31,11 +31,15 @@ class Book(models.Model):
     author = models.ForeignKey(Author,on_delete=models.CASCADE,default= None,blank=True,null=True)
     category = models.ManyToManyField(Category)
     status = models.IntegerField(choices=status_choice,default=0)
+    description = models.TextField(default="Đang cập nhật",max_length = 2000)
+    click = models.IntegerField(default=0)
     def __str__(self):
         return self.BookName
 
 class Chapter(models.Model):
     def book_upload(self, filename):# Tạo vị trí lưu của chapter ứng với truyện
+        self.book.createDate = self.time_pub
+        self.book.save()
         return osjoin(str(self.book.BookName),filename)
     book = models.ForeignKey(Book,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)

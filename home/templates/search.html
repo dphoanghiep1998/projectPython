@@ -13,20 +13,14 @@
         <div class="card-group">
             {% for i in book %}
             <div class="card">
-                <a href=""><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
+                <a href="{% url 'chap' i.id %}"><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
                 <div class="container">
-                    <h5><b>{{i.BookName}}</b></h5>
+                   <a class="chitiet2" href="{% url 'chap' i.id %}"> <h5><b>{{i.BookName}}</b></h5></a>
                     <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Đọc</a></button></p>
                     <span class="view">
-                        <i class="fas fa-eye"></i> 108
+                        <i class="fas fa-eye"></i> {{ i.click }}
                     </span>
-                   <div class="rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </div> 
+                 
                 </div>
             </div>
             {% if forloop.counter|divisibleby:"4" %}

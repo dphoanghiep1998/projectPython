@@ -13,9 +13,14 @@ def index(request):
 
 def test1(request): #Hiển thị sách
     booklist = Book.objects.all().order_by('-createDate')
+    bookhot = Book.objects.all().order_by('-click')
+    if len(bookhot) >=6:
+        booknew = bookhot[0:5]
+    else:
+        booknew = bookhot[0:len(bookhot)]
     category = Category.objects.all()
     author = Author.objects.all()
-    paginator = Paginator(booklist, 1)
+    paginator = Paginator(booklist, 12)
     pageNumber = request.GET.get('page')
     try:
         book = paginator.page(pageNumber)
@@ -24,13 +29,23 @@ def test1(request): #Hiển thị sách
     except EmptyPage:
         book = paginator.page(paginator.num_pages)
 
-
-    context = {'book':book,'cate': category,'author':author}
+    context = {'book':book,'cate': category,'author':author,"booknew":booknew}
     return render(request,'home.html',context)
+
 
 def chaptest(request,id): #Hiển thị danh sách chương
     book = Book.objects.get(pk=id)
+    book.click +=1
+    book.save()
     cate = Category.objects.all()
+    catesame = book.category.all()[0]
+    booksame = catesame.book_set.all().exclude(pk = book.id).order_by('-createDate')
+    if len(booksame) >=4:
+        bsame = booksame[0:3]
+    elif len(booksame) < 4 and len(booksame)>0:
+        bsame = booksame[0:len(booksame)]
+    else:
+        bsame = None
     chap = book.chapter_set.all().order_by('-order')
     first = chap[len(chap)-1]
     form = CommentForm()
@@ -40,7 +55,7 @@ def chaptest(request,id): #Hiển thị danh sách chương
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(request.path)
-    context = {'book': book, 'chap': chap,'form':form,'comment':comment,'cate':cate,'first':first}
+    context = {'book': book, 'chap': chap,'form':form,'comment':comment,'cate':cate,'first':first,'booksame':bsame}
     return render(request,'chaptest.html',context)
 
 def ndchap(request, id): # Hiển thị nội dung chương
@@ -63,7 +78,7 @@ def ndchap(request, id): # Hiển thị nội dung chương
             pre = chap[len(chap)-2].id
 
     noidung = chapper.content.read().decode('utf-8')
-    line = chapper.content.readline().decode('utf-8')
+    line = chapper.title
     context = {'noidung': noidung, 'title': chapper.title, 'book': book,'chap':chapper,'next':next,'pre':pre,
                'line':line,'cate':cate}
 
@@ -83,23 +98,34 @@ def TheLoai(request,name): #Lọc theo thể loại
     category = Category.objects.get(name=name)
     Bookcate = category.book_set.all()
     cate = Category.objects.all()
-    contex = {'bookcate':Bookcate,'cate':cate,'category':category}
+    paginator = Paginator(Bookcate, 8)
+    pageNumber = request.GET.get('page')
+    try:
+        book = paginator.page(pageNumber)
+    except PageNotAnInteger:
+        book = paginator.page(1)
+    except EmptyPage:
+        book = paginator.page(paginator.num_pages)
+
+
+    contex = {'bookcate':book,'cate':cate,'category':category}
     return render(request,'theloai.html',contex)
 
 
 def tacgia(request,name): #Lọc theo tác giả
      author = Author.objects.get(Name = name)
      book = author.book_set.all()
-     contex = {'book':book}
+     cate = Category.objects.all()
+     contex = {'book':book,'author':author,'cate':cate}
      return render(request,'tacgia.html',contex)
 
 def search(request):
+    cate = Category.objects.all()
     if request.method == 'GET':
         searchtext = request.GET.get('search', None)
         if searchtext:
             book = Book.objects.filter(BookName__icontains = searchtext)
         else:
             book = None
-        context = {'book': book,'searchtext':searchtext}
+        context = {'book': book,'searchtext':searchtext,'cate':cate}
         return render(request, 'search.html', context)
-
