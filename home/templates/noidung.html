@@ -1,6 +1,129 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 style="text-align: center"> {{title}} </h1>
-<div style="margin-left:100px;margin-right:100px;margin-top:50px">{{ noidung | linebreaks }} </div>
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'css/read.css' %}>
 
-{% endblock content %}
+
+<div id="content">
+    <section class="page">
+        <h1>{{ book.BookName }} {{line}}</h1>
+        <div class="buttons">
+            {% if next == None and pre %}
+            <button class="previous"><a href="{% url 'noidung' pre %}"><i class="fas fa-angle-left"></i>
+                    Chương trước
+                </a>
+            </button>
+            <select onchange="location = this.value;">
+                {% for i in book.chapter_set.all %}
+                {% if i.id == chap.id %}
+                <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% else %}
+                <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            {% endif %}
+            {% if next and pre %}
+            <button class="previous"><a href="{% url 'noidung' pre %}"><i class="fas fa-angle-left"></i>
+                    Chương trước
+                </a>
+            </button>
+            <select onchange="location = this.value;">
+                {% for i in book.chapter_set.all %}
+                {% if i.id == chap.id %}
+                <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% else %}
+                <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <button class="previous"><a href="{% url 'noidung' next %}">
+                    Chương sau
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </button>
+            {% endif %}
+            {% if next and pre == None %}
+            <select onchange="location = this.value;">
+                {% for i in book.chapter_set.all %}
+                {% if i.id == chap.id %}
+                <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% else %}
+                <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            <button class="previous"><a href="{% url 'noidung' next %}">
+                    Chương sau
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </button>
+            {% endif %}
+    
+        </div>
+        <hr>
+        <div class="field-item even">
+            <div style="margin-left:100px;margin-right:100px;margin-top:50px">{{ noidung | safe |linebreaks }} </div>
+        </div>
+    </section>
+
+    <div class="buttons">
+        {% if next == None and pre %}
+        <button class="previous"><a href="{% url 'noidung' pre %}"><i class="fas fa-angle-left"></i>
+                Chương trước
+            </a>
+        </button>
+        <select onchange="location = this.value;">
+            {% for i in book.chapter_set.all %}
+            {% if i.id == chap.id %}
+            <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% else %}
+            <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        {% endif %}
+        {% if next and pre %}
+        <button class="previous"><a href="{% url 'noidung' pre %}"><i class="fas fa-angle-left"></i>
+                Chương trước
+            </a>
+        </button>
+        <select onchange="location = this.value;">
+            {% for i in book.chapter_set.all %}
+            {% if i.id == chap.id %}
+            <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% else %}
+            <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <button class="previous"><a href="{% url 'noidung' next %}">
+                Chương sau
+                <i class="fas fa-angle-right"></i>
+            </a>
+        </button>
+        {% endif %}
+        {% if next and pre == None %}
+        <select onchange="location = this.value;">
+            {% for i in book.chapter_set.all %}
+            {% if i.id == chap.id %}
+            <option selected="selected" value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% else %}
+            <option value="{% url 'noidung' i.id %} ">{{ i.title }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <button class="previous"><a href="{% url 'noidung' next %}">
+                Chương sau
+                <i class="fas fa-angle-right"></i>
+            </a>
+        </button>
+        {% endif %}
+
+    </div>
+
+
+
+    {% endblock %}
+
+ 

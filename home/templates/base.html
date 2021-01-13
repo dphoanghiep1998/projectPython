@@ -18,10 +18,15 @@
             <ul class="nav nav-tabs nav-fill" style="height: 50px; display: flex;">
                 <li><a href={% url 'home' %} title="Trang chủ" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="#" title="Fanpage"><i class="fab fa-facebook"></i> Fanpage</a></li>
-                <form class="example" action="/action_page.php">
-                    <input type="text" placeholder="Tìm kiếm..." name="search2">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
+                <form  class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+                    <div>
+                    <input type="text" placeholder="Tìm kiếm..." name="search" style="height: 25px;width:200px ;">
+                    <button type="submit" style="height: 31px"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            
+           
+       
                 {% if user.username %}
                 <p> Xin chào <b>{{ user.username}}</b></p><span style="margin-left:10px"> <li><a href="{% url 'dangxuat' %}"><i class="fas fa-sign-in-alt"></i>
                             Đăng xuất</a></li>
@@ -37,9 +42,17 @@
             <ul style="height: 40px;">
                 <li><a href="#">Thể loại <i class='fas fa-angle-down'></i></a>
                     <ul class="sub-menu">
+                        <div class="row" style="z-index: 10000;">
                         {% for i in cate  %}
                             <li><a href={% url 'theloai' i.name %}>{{i.name}}</a></li>                      
-                         {% endfor %}
+                         
+                            {% if forloop.counter|divisibleby:"3" %}
+                        </div>
+                        
+                        <div class="row">
+                        {% endif %}
+                        {% endfor %}
+                        </div>
                     </ul>
                 </li>
                 <li><a href="#">Truyện mới</a></li>
@@ -68,3 +81,17 @@
 </body>
 
 </html>
+<script>
+    window.onscroll = function() {myFunction()};
+    
+    var header = document.getElementById("bot");
+    var sticky = header.offsetTop;
+    
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+    </script>

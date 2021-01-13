@@ -1,26 +1,51 @@
-{% extends 'base.html' %}
+
 {% block content %}
-<br/>
+
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" type="text/css" href={% static 'css/dangnhap.css' %}>
+<br />
 
 {% if user.username %}
-    <p> <h2 style="color:red">Xin chào {{user.username }} ,bạn đang đăng nhập</h2> <a href= "{% url 'dangxuat' %}"> Đăng xuất</a></span> </p>
+<p>
+<h2 style="color:red">Xin chào {{user.username }} ,bạn đang đăng nhập</h2> <a href="{% url 'dangxuat' %}"> Đăng
+    xuất</a></span> </p>
 {% else %}
-<center><h3 style="color:red" >Chào mừng đến với trang đăng nhập !</h3></center>
-
 <center>
-    <form  method="post" style="border:1px solid #000;margin-top:20px;width:500px">
-        {% csrf_token %}
-        <center style="margin-top:20px;margin-bottom:20px">
-        {% for key,value in form.errors.items  %}
-            <p style="color:red">Vui lòng nhập đúng tài khoản và mật khẩu</p>
-        {% endfor %}
-        <p>Tài khoản : {{form.username}}</p>
-        <p>Mật khẩu: {{form.password}}</p>
-        <input type="hidden" name="next" value="/home"/><br/>
-        <input type="submit" name="dangnhap" value="Đăng nhập"/>
-       <p>Nếu chưa có tài khoản vui lòng <a href="{% url 'dangky' %}">Đăng kí</a>!</p>
-        </center>
-    </form>
+    <h3 style="color:red">Chào mừng đến với trang đăng nhập !</h3>
 </center>
+
+<div id="dangnhap">
+    <div class="container" id="container">
+       
+        <div class="form-container sign-in-container">
+            <form action="#"  method="post" >
+             {% csrf_token %}
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <br>
+                <label>Username</label>
+                {{form.username}}
+                <label>Password</label>
+                {{form.password}}
+                <input type="hidden" name="next" value="/"/><br/>
+               
+                <button type="submit" name="dangnhap">Sign In</button>
+                <br>
+                 <p>Nếu chưa có tài khoản vui lòng <a style="color:red" href="{% url 'dangky' %}"><br>Đăng kí</a>!</p>
+            </form>
+        </div>
+       
+    </div>
+</div>
+
+
 {% endif %}
 {% endblock content %}

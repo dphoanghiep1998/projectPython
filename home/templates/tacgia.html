@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="main">
+    <div id="left">
+        <h3 class="text-center">
+            Tác giả <strong>{{ author.Name }}</strong>
+        </h3>
+        <div class="description">
+            <div class="des">{{category.description}}</div>
+        </div>
+        <div class="card-group">
+            {% for i in book %}
+            <div class="card">
+                <a href=""><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b>{{i.BookName}}</b></h5>
+                    <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Đọc</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> {{i.click}}
+                    </span>
+                   
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"4" %}
+        </div>
+        <div class="card-group">
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="center">
+            <div class="buttons">
+                {% if bookcate.has_previous %}
+                <button class="previous"><a href="?page={{ bookcate.previous_page_number }}"><i
+                        class="fas fa-angle-left"></i>
+                    Trước
+                </a>
+                </button>
+                {% endif %}
+                {% for object in bookcate.paginator.page_range %}
+                {% if bookcate.number == object %}
+                <button class="item" style="background-color:black"><a class="page-link"
+                                                                         href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% else %}
+                <button class="item"><a class="page-link" href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% endif %}
+                {% endfor %}
+                {% if bookcate.has_next %}
+                <button class="previous"><a href="?page={{ bookcate.next_page_number }}">
+                    Sau
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                </button>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

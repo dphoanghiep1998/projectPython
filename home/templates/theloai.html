@@ -5,28 +5,27 @@
 <div id="main">
     <div id="left">
         <h3 class="text-center">
-            Thể loại <strong>Đam mỹ</strong>
+            Thể loại <strong>{{ category.name}}</strong>
         </h3>
         <div class="description">
-            <div class="des">Chỗ này giới thiệu về thể loại</div>
+            <div class="des">{{category.description}}</div>
         </div>
         <div class="card-group">
             {% for i in bookcate %}
             <div class="card">
-                <a href=""><img src={% static 'images/conan1.jpg' %} alt="Avatar" style="width:100%"></a>
+                <a href="{% url 'chap' i.id %}"><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
                 <div class="container">
-                    <h5><b>Thám tử lừng danh Conan</b></h5>
-                    <p><button><a class="chitiet" href="#">Chi tiết</a></button></p>
+                    <h5><b><a class="chitiet2" href="{% url 'chap' i.id %}">{{i.BookName}}</a></b></h5>
+                    <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Đọc</a></button></p>
                     <span class="view">
-                        <i class="fas fa-eye"></i> 108
+                        <i class="fas fa-eye"></i> {{i.click}}
                     </span>
-                   <div class="rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                    </div> 
+                    <ul>
+                    {% for j in i.chapter_set_all %}
+                        <li><a href = "{% url 'noidung' j.id %}" ></a></li>
+                    {% endfor %}
+                    </ul>
+                   
                 </div>
             </div>
             {% if forloop.counter|divisibleby:"4" %}
@@ -35,6 +34,35 @@
             {% endif %}
             {% endfor %}
         </div>
+        <div class="center">
+            <div class="buttons">
+                {% if bookcate.has_previous %}
+                <button class="previous"><a href="?page={{ bookcate.previous_page_number }}"><i
+                        class="fas fa-angle-left"></i>
+                    Trước
+                </a>
+                </button>
+                {% endif %}
+                {% for object in bookcate.paginator.page_range %}
+                {% if bookcate.number == object %}
+                <button class="item" style="background-color:black"><a class="page-link"
+                                                                         href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% else %}
+                <button class="item"><a class="page-link" href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% endif %}
+                {% endfor %}
+                {% if bookcate.has_next %}
+                <button class="previous"><a href="?page={{ bookcate.next_page_number }}">
+                    Sau
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                </button>
+                {% endif %}
+
+            </div>
+        </div>
     </div>
     <div id="right-theloai">
 
@@ -42,11 +70,20 @@
             <div class="content">
                 <h3 class="module-title"><b>Tất cả thể loại</b></h3>
                 <ul class="nav">
+<<<<<<< HEAD
                     {% for i in cateall %}
                     <li>
                         <a target="_self" href="">{{i.name}}</a>
                     </li>
                     {%endfor%}
+=======
+                    {% for i in cate %}
+                    <li>
+                        <a target="_self" href="{% url 'theloai' i.name %}">{{ i.name }}</a>
+                    </li>
+                    {% endfor %}
+
+>>>>>>> vutran
                 </ul>
             </div>
         </div>

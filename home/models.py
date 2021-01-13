@@ -1,6 +1,10 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from .validators import validate_ContentChapter
-
+import datetime
+from os.path import join as osjoin
+from django.conf import settings
+from django.http import HttpResponse,HttpResponseRedirect
 
 class Author(models.Model):
     Name = models.CharField(max_length=100)
@@ -10,34 +14,52 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    type_choice = ((0,"Sách"),(1,"Truyện"),(2,"Cả hai"))
     name = models.CharField(max_length=50)
-    type = models.IntegerField(choices=type_choice,default=2)
+    description = models.TextField(default="Đang cập nhật",max_length = 2000)
     def __str__(self):
         return self.name
 
 
 
-class Comment(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.CharField(max_length=1000)
-    def __str__(self):
-        return self.title
+
 
 class Book(models.Model):
+    status_choice = ((0,"Đang ra"),(1,"Đã hoàn thành"),(2,"Tạm ngưng"))
     BookName = models.CharField(max_length=100)
-    createDate = models.DateTimeField()
+    createDate = models.DateTimeField(default=datetime.datetime.now())
     imageBook = models.ImageField(upload_to='image/%Y/%m/%d/',blank=True,null=True)
     author = models.ForeignKey(Author,on_delete=models.CASCADE,default= None,blank=True,null=True)
     category = models.ManyToManyField(Category)
+    status = models.IntegerField(choices=status_choice,default=0)
+    description = models.TextField(default="Đang cập nhật",max_length = 2000)
+    click = models.IntegerField(default=0)
     def __str__(self):
         return self.BookName
 
 class Chapter(models.Model):
+    def book_upload(self, filename):# Tạo vị trí lưu của chapter ứng với truyện
+        self.book.createDate = self.time_pub
+        self.book.save()
+        return osjoin(str(self.book.BookName),filename)
     book = models.ForeignKey(Book,on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    content = models.FileField(upload_to='documents/%Y/%m/%d/',validators=[validate_ContentChapter]) #documents/%Y/%m/%d/:Chỉ định nơi lưu file , tệp documents sẽ dc tạo tự động trong media
-    time_pub = models.DateTimeField()
+    title = models.CharField(max_length=100)
+    content = models.FileField(upload_to=book_upload,validators=[validate_ContentChapter]) #documents/%Y/%m/%d/:Chỉ định nơi lưu file , tệp documents sẽ dc tạo tự động trong media
+    order = models.IntegerField(default=0)
+    time_pub = models.DateTimeField(default=datetime.datetime.now())
+    class Meta:
+        ordering = ["order"]
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    book = models.ForeignKey(Book,on_delete=models.CASCADE,related_name="comment",default=None)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE,default=None)
+    content = models.TextField(max_length=1000)
+    time_pub = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk:
+            raise ValidationError("Bạn không thể thay đổi trường này" )
+        super(Comment, self).save(*args, **kwargs)
+
 
