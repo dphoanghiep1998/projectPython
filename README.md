@@ -8,6 +8,7 @@
   - chạy lệnh py manage.py runserver để chạy project
 # Các chức năng chính
   - Quản lý của admin : gõ http://127.0.0.1:8000/admin/ : Có thể update tất cả thông tin liên quan đến sách, user , quyền truy cập
+  - Đăng nhập , đăng ký tài khoản để up sách, sửa sách ( đang cập nhật hoàn thiện )
   - Xem sách, lọc bởi tên tác giả, thể loại,
   - bình luận về sách
   -  hiển thị thời gian ngày tháng lên up sách
