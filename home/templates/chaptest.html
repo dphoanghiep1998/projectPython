@@ -6,6 +6,7 @@
 {% block content%}
 {% load static %}
 <link rel="stylesheet" type="text/css" href={% static 'css/infor.css' %}>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
 {% comment %} {% for j in book.chapter_set.all %}
 <p><a href="{% url 'noidung' j.id %}" style="decoration:none">{{ j.title }}</a></p>
 
@@ -28,13 +29,12 @@
     <div class="p20 bg-white content-col relative">
         <div class="infor">
             <div class="book-thumb " style="position:relative;">
-                <img src='{{book.imageBook.url}}'
-                    class="img-fluid box-shadow-bold">
+                <img src='{{book.imageBook.url}}' class="img-fluid box-shadow-bold">
                 <div class="book-interactive">
                     <span class="view">
                         <i class="fas fa-eye"></i> Lượt xem : {{book.click}}
                     </span>
-                   
+
                 </div>
             </div>
             <div class="book-info">
@@ -42,15 +42,17 @@
                     <h1>{{ book.BookName}}</h1>
                     <div class="book-info-line">
                         <span>Tác giả:</span>
-                        <h3 class="detail-tag"><a style="color:blue" class="author-detail hightlight click_author_info" href="{% url 'tacgia' book.author %}">{{book.author}}</a></h3>
+                        <h3 class="detail-tag"><a style="color:blue" class="author-detail hightlight click_author_info"
+                                href="{% url 'tacgia' book.author %}">{{book.author}}</a></h3>
                     </div>
                     <p>Thể loại:
-                        {% for i in book.category.all %} 
-                        <a style="color:blue" class="category-detail hightlight click_category" href="{% url 'theloai' i.name %}">{{i.name}} &nbsp;</a>
+                        {% for i in book.category.all %}
+                        <a style="color:blue" class="category-detail hightlight click_category"
+                            href="{% url 'theloai' i.name %}">{{i.name}} &nbsp;</a>
                         {% endfor %}
                     </p>
-                    
-                    <p>Ngày cập nhật: {{ book.createDate  }}</p>
+
+                    <p>Ngày cập nhật: {{ book.createDate }}</p>
                 </div>
                 <div class="ga_click" data-gacategory="convert web" data-gaaction="click book" data-galabel="read">
                     <a class="book-info-link" href="{% url 'noidung' first.id %}">Đọc
@@ -77,24 +79,24 @@
                 <nav class="navbar">
                     <a class="de_xuat"><i class='fas fa-code-branch'></i> Liên quan</a>
                 </nav>
-                {% if booksame %}          
+                {% if booksame %}
                 <div class="card-group">
-                {% for i in booksame %}
-                
+                    {% for i in booksame %}
+
                     <div class="card">
-                    <div style="float:left;width:90%">
-                        <a href="{% url 'chap' i.id %}"><img src="{{ i.imageBook.url }}" alt="Avatar"></a>
-                    </div>
+                        <div style="float:left;width:90%">
+                            <a href="{% url 'chap' i.id %}"><img src="{{ i.imageBook.url }}" alt="Avatar"></a>
+                        </div>
                         <div class="container1">
                             <h5><b>{{i.BookName}}</b></h5>
                             <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Chi tiết</a></button></p>
                             <span class="view">
                                 <i class="fas fa-eye"></i> {{i.click}}
-                            </span>                          
+                            </span>
                         </div>
                     </div>
-                    
-                 {% endfor %}
+
+                    {% endfor %}
                 </div>
                 {% endif %}
             </div>
@@ -111,31 +113,32 @@
         <div class="listing-chapters_wrap show-more">
             <ul class="main version-chap">
                 {% for j in chap %}
-                
+
                 <li class="wp-manga-chapter free-chap">
-                    <a href="{% url 'noidung' j.id %}"> 
+                    <a href="{% url 'noidung' j.id %}">
                         {{ j.title }}
                     </a>
                     <span class="chapter-release-date">
                         <i class="far fa-clock"></i> {{ j.time_pub }}
                     </span>
-                    
+
                 </li>
                 {% endfor %}
-                
+
 
             </ul>
         </div>
 
     </div>
-    
+
     <div id="comment">
         {% if user.username%}
         <div class="card-box" id="comments">
             <header>
                 <h3><i class="far fa-comment-alt"></i>Bình Luận</h3>
             </header>
-            <form class="comment-form" method="post" action="{% url 'chap' book.id %}"> <input type="hidden" name="storyID" id="storyID" value="16815">
+            <form class="comment-form" method="post" action="{% url 'chap' book.id %}"> <input type="hidden"
+                    name="storyID" id="storyID" value="16815">
                 {% csrf_token %}
                 <input type="hidden" name="replyTo" value="Bình luận"> <textarea aria-label="Bình luận" id="id_content"
                     name="content" placeholder="Bình luận tại đây!"></textarea>
@@ -160,11 +163,13 @@
                 <label class="full" for="star1" title="Sucks big time - 1 star"></label>
             </div>
             {% else %}
-        <h5>Nếu muốn để lại comment , vui lòng <a href="{% url 'dangnhap' %}" style="decoration:none">Đăng nhập</a></h5>
-        {% endif %}
+            <h5>Nếu muốn để lại comment , vui lòng <a href="{% url 'dangnhap' %}" style="decoration:none">Đăng nhập</a>
+            </h5>
+            {% endif %}
             <ul id="comment-list" class="comment-list">
                 {% for content in comment %}
-                <li id="comment91878" class="comment clearfix " data-user-id="324405" data-parent="0" data-id="91878">
+                {% if forloop.counter < 3 %}
+                <li id="comment91878" class="comment clearfix" data-user-id="324405" data-parent="0" data-id="91878">
                     <span class="avatar-letter">H</span>
                     <div class="comment-content">
                         <p class="userinfo"><a href="#">{{ content.author }}</a> <i class="fa fa-circle"></i>
@@ -173,26 +178,38 @@
                         <p class="message">{{ content.content | linebreaks }}</p>
                     </div>
                 </li>
+                {% else %}
+
+                <li  id="comment91878" class="comment clearfix hide" data-user-id="324405"
+                    data-parent="0" data-id="91878">
+                    <span class="avatar-letter">H</span>
+                    <div class="comment-content">
+                        <p class="userinfo"><a href="#">{{ content.author }}</a> <i class="fa fa-circle"></i>
+                            <span>{{ content.time_pub }}</span>
+                        </p>
+                        <p class="message">{{ content.content | linebreaks }}</p>
+                    </div>
+                </li>
+                {% endif %}
                 {% endfor %}
             </ul>
-            <div id="comment-more"><a href="#" data-paged="2" rel="nofollow">Xem thêm</a>
-            </div>
+            <div id="comment-more"><a id="more" href="#" data-paged="2" rel="nofollow">Xem thêm</a></div>
+           
         </div>
     </div>
-
-    <!-- {% if user.username%}
-    <form method="post" action="{% url 'chap' book.id %}" style="margin-left:100px">
-        {% csrf_token %}
-        <label>Bình luận</label><br />
-        <p>{{ form.content }}</p>
-        <input type="submit" value="Bình luận">
-        {% else %}
-        <h5>Nếu muốn để lại comment , vui lòng <a href="{% url 'dangnhap' %}" style="decoration:none">đăng nhập</a></h5>
-        {% endif %}
-    </form>
-    {% for content in comment %}
-    <strong>{{ content.author }}</strong>
-    <h6>{{ content.time_pub }}</h6>
-    <p>{{ content.content | linebreaks }}</p>
-    {% endfor %} -->
+    <script>
+        $(function () {
+    $("#comment li").slice(0, 4).show();
+    $("#more").on('click', function (e) {
+        e.preventDefault();
+        $("#comment li:hidden").slice(0, 4).slideDown();
+        if ($("#comment li:hidden").length == 0) {
+            $("#load").fadeOut('slow');
+        }
+        $('html,body').animate({
+            scrollTop: $(this).offset().top
+        }, 1500);
+    });
+});
+    </script>
     {% endblock content%}

@@ -578,3 +578,6 @@ hr {
     font-size: 18px;
     color: #fff;
 }
+.hide{
+    display: none;
+}
