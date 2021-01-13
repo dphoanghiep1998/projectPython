@@ -70,20 +70,12 @@
             <div class="content">
                 <h3 class="module-title"><b>Tất cả thể loại</b></h3>
                 <ul class="nav">
-<<<<<<< HEAD
-                    {% for i in cateall %}
-                    <li>
-                        <a target="_self" href="">{{i.name}}</a>
-                    </li>
-                    {%endfor%}
-=======
                     {% for i in cate %}
                     <li>
                         <a target="_self" href="{% url 'theloai' i.name %}">{{ i.name }}</a>
                     </li>
                     {% endfor %}
 
->>>>>>> vutran
                 </ul>
             </div>
         </div>

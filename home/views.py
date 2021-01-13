@@ -98,13 +98,6 @@ def TheLoai(request,name): #Lọc theo thể loại
     category = Category.objects.get(name=name)
     Bookcate = category.book_set.all()
     cate = Category.objects.all()
-<<<<<<< HEAD
-    cateall = Category.objects.all()
-    contex = {'bookcate':Bookcate,'cate':cate,'cateall':cateall}
-    return render(request,'theloai.html',contex)
-
-
-=======
     paginator = Paginator(Bookcate, 8)
     pageNumber = request.GET.get('page')
     try:
@@ -136,4 +129,3 @@ def search(request):
             book = None
         context = {'book': book,'searchtext':searchtext,'cate':cate}
         return render(request, 'search.html', context)
->>>>>>> vutran
