@@ -1,0 +1,85 @@
+
+{% load static %}
+
+{% block content%}
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/upload.css' %}>
+<div id="content">
+    <div id="left-blog">
+        <h2><b><a href="">Bookxyz.com</a></b></h2>
+        <ul class="list">
+            <li><a href="{% url 'upload' %}"><i class='fas fa-edit'></i> Thêm mới truyện</a></li>
+            <li><a href="{% url 'infor' user.id %}"><i class='fas fa-list-ol'></i> Quản lý truyện</a></li>
+        </ul>
+    </div>
+
+    <div id="right-blog">
+            <div id="main">
+    <div id="left">
+        <h3 class="text-center">
+            Truyện đã up <strong>{{ category.name}}</strong>
+        </h3>
+        <div class="card-group">
+            {% for i in book %}
+            <div class="card">
+                <a href="{% url 'chap' i.id %}"><img src="{{i.imageBook.url}}" alt="Avatar" style="width:100%"></a>
+                <div class="container">
+                    <h5><b><a class="chitiet2" href="{% url 'chap' i.id %}">{{i.BookName}}</a></b></h5>
+                    <p><button><a class="chitiet" href="{% url 'chap' i.id %}">Đọc</a></button></p>
+                    <p><button><a class="chitiet" href="{% url 'edit' i.id %}">Cập nhật</a></button></p>
+                    <span class="view">
+                        <i class="fas fa-eye"></i> {{i.click}} Lượt xem
+                    </span>
+                    <ul>
+                    {% for j in i.chapter_set_all %}
+                        <li><a href = "{% url 'noidung' j.id %}" ></a></li>
+                    {% endfor %}
+                    </ul>
+                   
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:"4" %}
+        </div>
+        <div class="card-group">
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="center">
+            <div class="buttons">
+                {% if bookcate.has_previous %}
+                <button class="previous"><a href="?page={{ bookcate.previous_page_number }}"><i
+                        class="fas fa-angle-left"></i>
+                    Trước
+                </a>
+                </button>
+                {% endif %}
+                {% for object in bookcate.paginator.page_range %}
+                {% if bookcate.number == object %}
+                <button class="item" style="background-color:black"><a class="page-link"
+                                                                         href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% else %}
+                <button class="item"><a class="page-link" href="?page={{ forloop.counter }}">
+                    {{ forloop.counter }}</i></a></button>
+                {% endif %}
+                {% endfor %}
+                {% if bookcate.has_next %}
+                <button class="previous"><a href="?page={{ bookcate.next_page_number }}">
+                    Sau
+                    <i class="fas fa-angle-right"></i>
+                </a>
+                </button>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+        
+    </div>
+</div>
+
+
+
+
+{% endblock %}

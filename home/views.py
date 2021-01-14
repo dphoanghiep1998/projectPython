@@ -159,21 +159,68 @@ def up_books(request):
     ChapterInlineFormSet = inlineformset_factory(Book, Chapter, fields=('title','content','order','time_pub'), extra=1)
     formset = ChapterInlineFormSet(instance=book)
     if request.method == "POST":
-        book_form = uploadbook(request.POST)
+        book_form = uploadbook(request.POST,request.FILES)
         formset = ChapterInlineFormSet(request.POST, request.FILES)
         if book_form.is_valid():
-            print(formset)
-            created_book = book_form.save(commit=False)
-            formset = ChapterInlineFormSet(request.POST,request.FILES,instance=created_book)
+            created_book = book_form.save(commit=True)
+            formset = ChapterInlineFormSet(request.POST, request.FILES, instance=created_book )
             if formset.is_valid():
+                created_book.userid = request.user.id
                 created_book.save()
                 formset.save()
+                so = 0
+                chap = created_book.chapter_set.all()
+                if len(chap) != 0:
+                    so = chap[len(chap) - 1].order
+                for afile in request.FILES.getlist('multiple'):
+                    so += 1
+                    line = "Chương " + str(so)
+                    instance = Chapter(title=line, book=created_book, content=afile, order=so)
+                    instance.save()
                 return HttpResponse("upload thanh cong")
+
     return render(request,"upload.html", {
         "book_form": book_form,
         "form": formset,
     })
+
+
 def goiUser(request,id):
 
     return render(request,"profile.html")
-    
+
+def edit_book(request,id):
+    book = Book.objects.get(pk = id)
+    book_form = uploadbook(instance=book) # setup a form for the parent
+    ChapterInlineFormSet = inlineformset_factory(Book, Chapter, fields=('title','content','order','time_pub'), extra=1)
+    formset = ChapterInlineFormSet(instance=book)
+    if request.method == "POST":
+        book_form = uploadbook(request.POST,request.FILES,instance=book)
+        formset = ChapterInlineFormSet(request.POST, request.FILES)
+        if book_form.is_valid():
+            created_book = book_form.save(commit=False)
+            formset = ChapterInlineFormSet(request.POST, request.FILES, instance=created_book )
+            if formset.is_valid():
+                created_book.userid = request.user.id
+                created_book.save()
+                formset.save()
+                so = 0
+                chap = created_book.chapter_set.all()
+                if len(chap) != 0:
+                    so = chap[len(chap) - 1].order
+                for afile in request.FILES.getlist('multiple'):
+                    so += 1
+                    line = "Chương " + str(so)
+                    instance = Chapter(title=line, book=created_book, content=afile, order=so)
+                    instance.save()
+                return HttpResponse("upload thanh cong")
+
+    return render(request,"edit.html", {
+        "book_form": book_form,
+        "form": formset,
+    })
+def infoUser(request,use):
+    book =  Book.objects.filter(userid = use)
+    book2 = Book.objects.all()
+    context = {"book":book,"book2":book2}
+    return render(request,"infor.html",context)

@@ -15,7 +15,9 @@ urlpatterns = [
     path('theloai/<name>',views.TheLoai,name='theloai'),
     path('tacgia/<name>',views.tacgia, name = 'tacgia'),
     path('search/',views.search, name = 'search'),
-    path('upload/',views.up_books, name ='upload'),
-    path('hot/',views.hot, name ='hot'),
+    path('upload/', views.up_books, name='upload'),
+    path('infor/<int:use>', views.infoUser, name='infor'),
+    path('edit/<int:id>', views.edit_book, name='edit'),
+    path('hot/', views.hot, name='hot'),
 
 ]

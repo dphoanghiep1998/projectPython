@@ -1,0 +1,111 @@
+body {
+    font-family: Arial;
+    font-size: 16px;
+    width: 100%;
+    margin: 0px auto;
+}
+
+#content {
+    
+}
+ 
+#left-blog {
+    width: 20%;
+    background: #14425d;
+    height: 100%;
+    float: left;
+
+}
+
+#left-blog a {
+    text-decoration: none;
+    color: white;
+}
+
+#left-blog h2 {
+    margin-left: 16px;
+    color: white;
+    margin-bottom: 32px;
+}
+
+#left-blog li {
+    list-style: none;
+    margin-bottom: 32px;
+}
+
+
+
+#right-blog {
+    width: 80%;
+    float: left;
+    height: 100%;
+    overflow: scroll;
+}
+
+
+
+#right-blog i {
+    color: #14425d;
+}
+.container{
+    width: 100%;
+    margin-left: 0%;
+    
+    
+}
+#col2 label{
+    float: left;
+    display: block;
+    margin-bottom: 5%;
+    margin-right: 32px;
+}
+.container input,select{
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+
+#col2{
+    float: left;
+    width: 100%;
+}
+form {
+    height: 1000px;
+    margin-top: 50px;
+    margin-left: 50px;
+    
+}
+
+#col2 .row {
+    display: flex;
+    margin-bottom: 30px;
+}
+#chap{
+    float: left;
+}
+#chap input {
+    display: block;
+}
+#col2 textarea{
+    width: 300px;
+    height: 100px;
+    margin-left: 18px;
+}
+/* #col2 select{
+    width: 300px;
+    height: 30px;
+    margin-left: 20px;
+} */
+#id_category{
+    height: 100px;
+}
+#id_status{
+    height: 25px;
+}
+#id_author{
+    height: 25px;
+    margin-left: 20px;
+}
+#id_BookName{
+    margin-left: 20px;
+}

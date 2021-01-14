@@ -28,12 +28,13 @@ class Book(models.Model):
     status_choice = ((0,"Đang ra"),(1,"Đã hoàn thành"),(2,"Tạm ngưng"))
     BookName = models.CharField(max_length=100)
     createDate = models.DateTimeField(default=datetime.datetime.now())
-    imageBook = models.ImageField(upload_to='image/%Y/%m/%d/',blank=True,null=True)
+    imageBook = models.ImageField(upload_to='image/%Y/%m/%d/',default= '../static/images/book1.jpg')
     author = models.ForeignKey(Author,on_delete=models.CASCADE,default= None,blank=True,null=True)
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category,blank=False,null=False)
     status = models.IntegerField(choices=status_choice,default=0)
     description = models.TextField(default="Đang cập nhật",max_length = 2000)
-    click = models.IntegerField(default=0)
+    click = models.IntegerField(default=0,editable=True)
+    userid = models.IntegerField(default=1, editable=False)
     def __str__(self):
         return self.BookName
 

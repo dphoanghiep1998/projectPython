@@ -1,20 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static 'css/upload.css' %}>
+<div id="content">
+    <div id="left-blog">
+        <h2><b><a href="{% url 'home' %}">Bookxyz.com</a></b></h2>
+        <ul class="list">
+            <li><a href="{% url 'upload' %}"><i class='fas fa-edit'></i> Thêm mới truyện</a></li>
+            <li><a href="{% url 'infor' user.id %}"><i class='fas fa-list-ol'></i> Quản lý truyện</a></li>
+        </ul>
+    </div>
 
-<div>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-    <p>{{ book_form }}</p>
-        {{ form.as_p }}
+    <div id="right-blog">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container">
 
-        <p>
-            <input type="submit" value="Save">
+                    <div id="col2">
+                        <div class="row">
+                            <label>Tên sách {{ book_form.BookName }}</label> <label>Mô tả</label>  {{ book_form.description }}
+                        </div>
+                        <div class="row">
+                            <label>Tác giả  {{ book_form.author }}</label> <label>Trạng thái</label>   {{ book_form.status }}
+                        </div> 
+                        <div class="row">
+                            <label>Bìa sách  {{ book_form.imageBook }} </label> <label>Thể loại</label> {{ book_form.category }}
+                        </div>
+                        
+                        <b>Chọn nhiều file : <input name="multiple" type="file" multiple  /></b>
+                        </div><br><h1 style="text-align: center;">Chương</h1>  
+                        <div id ="chap">
+                            
+                            {{ form.as_p }}
+                            <button style="width:100px;display: block" type="submit" value="Save">Save</button>
+                        </div>
+                        
+                       
+                    </div>
+                    
+                    
 
-        </p>
-    </form>
+                    
+                </div>
+            </form>
+        
+    </div>
 </div>
+
+
+{% endblock content %}

@@ -18,6 +18,9 @@
             <ul class="nav nav-tabs nav-fill" style="height: 50px; display: flex;">
                 <li><a href={% url 'home' %} title="Trang chủ" class="active"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li><a href="#" title="Fanpage"><i class="fab fa-facebook"></i> Fanpage</a></li>
+                {% if user.username %}
+                <li><a href="{% url 'infor' user.id %}" title="Fanpage"><i class="fa fa-list-ul"></i> Quản lý</a></li>
+                {% endif %}
                 <form  class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
                     <div>
                     <input type="text" placeholder="Tìm kiếm..." name="search" style="height: 25px;width:200px ;">
@@ -28,7 +31,7 @@
            
        
                 {% if user.username %}
-                <p> Xin chào <b>{{ user.username}}</b></p><span style="margin-left:10px"> <li><a href="{% url 'dangxuat' %}"><i class="fas fa-sign-in-alt"></i>
+                <p style="color:white"> Xin chào <b><a style="color:White;text-decoration:none" href="">{{ user.username}}</a></b></p><span style="margin-left:10px"> <li><a href="{% url 'dangxuat' %}"><i class="fas fa-sign-in-alt"></i>
                             Đăng xuất</a></li>
                 {% else %}
                 <li><a href="{% url 'dangnhap' %}" title="Đăng nhập" class="active"><i class="fas fa-sign-in-alt"></i>
