@@ -92,6 +92,8 @@ body {
     color: rgb(14, 13, 13);
     padding: 0px 20px 0px 20px;
     border-right: 1px solid #ccc;
+    /* width: 100px;
+    text-align: center; */
 }
 
 #menu_top form {
