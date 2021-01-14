@@ -1,0 +1,1 @@
+web gunicorn bookxzy_web.wsgi:application --log-file -

@@ -70,7 +70,10 @@ def chaptest(request,id): #Hiển thị danh sách chương
     else:
         bsame = None
     chap = book.chapter_set.all().order_by('-order')
-    first = chap[len(chap)-1]
+    if len(chap) !=0:
+        first = chap[len(chap)-1]
+    else:
+        first = None
     form = CommentForm()
     comment = book.comment.all().order_by('-time_pub')
     if request.method == "POST":
@@ -87,6 +90,8 @@ def ndchap(request, id): # Hiển thị nội dung chương
     cate = Category.objects.all()
     book = book[0]
     chap = book.chapter_set.all()
+    next = None
+    pre = None
     for i in range(len(chap)-1): # taọ nút next và pre
         if chap[i] == chapper and i != 0:
             next = chap[i+1].id
@@ -162,11 +167,11 @@ def up_books(request):
         book_form = uploadbook(request.POST,request.FILES)
         formset = ChapterInlineFormSet(request.POST, request.FILES)
         if book_form.is_valid():
-            created_book = book_form.save(commit=True)
+            created_book = book_form.save(commit=False)
             formset = ChapterInlineFormSet(request.POST, request.FILES, instance=created_book )
             if formset.is_valid():
+                created_book = book_form.save(commit=True)
                 created_book.userid = request.user.id
-                created_book.save()
                 formset.save()
                 so = 0
                 chap = created_book.chapter_set.all()
@@ -190,7 +195,7 @@ def goiUser(request,id):
     return render(request,"profile.html")
 
 def edit_book(request,id):
-    book = Book.objects.get(pk = id)
+    book = get_object_or_404(Book, pk=id)
     book_form = uploadbook(instance=book) # setup a form for the parent
     ChapterInlineFormSet = inlineformset_factory(Book, Chapter, fields=('title','content','order','time_pub'), extra=1)
     formset = ChapterInlineFormSet(instance=book)

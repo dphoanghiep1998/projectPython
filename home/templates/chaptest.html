@@ -55,8 +55,10 @@
                     <p>Ngày cập nhật: {{ book.createDate }}</p>
                 </div>
                 <div class="ga_click" data-gacategory="convert web" data-gaaction="click book" data-galabel="read">
+                    {% if first %}
                     <a class="book-info-link" href="{% url 'noidung' first.id %}">Đọc
                         sách</a>
+                    {% endif %}
                 </div>
 
                 <div class="fbpx-track" type="track" eventname="ViewContent"
