@@ -3,6 +3,7 @@ import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Comment
+from .models import Book
 
 
 class Dangky(forms.Form):
@@ -48,3 +49,7 @@ class CommentForm(forms.ModelForm):
         fields = ["content"] #Chỉ hiện trường content của model
 
 
+class uploadbook(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ["BookName","imageBook","author","category","status","description" ]

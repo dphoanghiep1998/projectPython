@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'home',
     'django_cleanup',
 
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'bookxzy_web.urls'
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'bookxzy_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,10 +69,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect',  # <--
             ],
         },
     },
 ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '126083542683640'
+SOCIAL_AUTH_FACEBOOK_SECRET = '314c8c2cc27a14fc6b6bb73def629b95'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'bookxzy_web.wsgi.application'
 
@@ -125,3 +138,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL ='/media/'
 MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
+]

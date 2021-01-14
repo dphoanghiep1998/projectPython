@@ -5,6 +5,7 @@ import datetime
 from os.path import join as osjoin
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth.models import AbstractUser
 
 class Author(models.Model):
     Name = models.CharField(max_length=100)
@@ -61,5 +62,3 @@ class Comment(models.Model):
         if self.pk:
             raise ValidationError("Bạn không thể thay đổi trường này" )
         super(Comment, self).save(*args, **kwargs)
-
-
