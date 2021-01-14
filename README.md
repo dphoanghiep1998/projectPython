@@ -1,5 +1,6 @@
 # projectPython
 # Hướng dẫn sử dụng : 
+  - Sử dụng pycharm tạo mới một project
   - Cài đặt python 3.7 hoặc phiên bản cao hơn
   - chạy lệnh pip install django
   - chạy lệnh pip instal django-cleanup
