@@ -8,9 +8,9 @@
         <h3 class="text-center">
             Tác giả <strong>{{ author.Name }}</strong>
         </h3>
-        <div class="description">
+        {% comment %} <div class="description">
             <div class="des">{{category.description}}</div>
-        </div>
+        </div> {% endcomment %}
         <div class="card-group">
             {% for i in book %}
             <div class="card">

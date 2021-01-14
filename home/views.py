@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Book,Chapter,Category,Author
-from .form import Dangky,CommentForm
+from .form import Dangky,CommentForm,uploadbook
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.forms import inlineformset_factory
 import os
+from django.contrib.auth.models import User
 # Create your views here.
 def home_view(request):
     return render(request,'home.html')
@@ -31,6 +33,27 @@ def test1(request): #Hiển thị sách
 
     context = {'book':book,'cate': category,'author':author,"booknew":booknew}
     return render(request,'home.html',context)
+
+def hot(request): #Hiển thị sách
+    booklist = Book.objects.all().order_by('-click')
+    bookhot = Book.objects.all().order_by('-createDate')
+    if len(bookhot) >=6:
+        booknew = bookhot[0:5]
+    else:
+        booknew = bookhot[0:len(bookhot)]
+    category = Category.objects.all()
+    author = Author.objects.all()
+    paginator = Paginator(booklist, 12)
+    pageNumber = request.GET.get('page')
+    try:
+        book = paginator.page(pageNumber)
+    except PageNotAnInteger:
+        book = paginator.page(1)
+    except EmptyPage:
+        book = paginator.page(paginator.num_pages)
+        
+    context = {'book':book,'cate': category,'author':author,"booknew":booknew}
+    return render(request,'truyenhot.html',context)
 
 
 def chaptest(request,id): #Hiển thị danh sách chương
@@ -129,3 +152,28 @@ def search(request):
             book = None
         context = {'book': book,'searchtext':searchtext,'cate':cate}
         return render(request, 'search.html', context)
+
+def up_books(request):
+    book = Book()
+    book_form = uploadbook(instance=book) # setup a form for the parent
+    ChapterInlineFormSet = inlineformset_factory(Book, Chapter, fields=('title','content','order','time_pub'), extra=1)
+    formset = ChapterInlineFormSet(instance=book)
+    if request.method == "POST":
+        book_form = uploadbook(request.POST)
+        formset = ChapterInlineFormSet(request.POST, request.FILES)
+        if book_form.is_valid():
+            print(formset)
+            created_book = book_form.save(commit=False)
+            formset = ChapterInlineFormSet(request.POST,request.FILES,instance=created_book)
+            if formset.is_valid():
+                created_book.save()
+                formset.save()
+                return HttpResponse("upload thanh cong")
+    return render(request,"upload.html", {
+        "book_form": book_form,
+        "form": formset,
+    })
+def goiUser(request,id):
+
+    return render(request,"profile.html")
+    

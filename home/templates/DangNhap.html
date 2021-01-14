@@ -13,9 +13,7 @@
 <h2 style="color:red">Xin chào {{user.username }} ,bạn đang đăng nhập</h2> <a href="{% url 'dangxuat' %}"> Đăng
     xuất</a></span> </p>
 {% else %}
-<center>
-    <h3 style="color:red">Chào mừng đến với trang đăng nhập !</h3>
-</center>
+
 
 <div id="dangnhap">
     <div class="container" id="container">
@@ -23,23 +21,26 @@
         <div class="form-container sign-in-container">
             <form action="#"  method="post" >
              {% csrf_token %}
-                <h1>Sign in</h1>
+                <h1>Đăng Nhập</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{% url 'social:begin' 'facebook' %}?next={% url 'home' %}" class="social"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your account</span>
+                <span>hoặc sử dụng</span>
                 <br>
-                <label>Username</label>
+                <label>Tên đăng nhập</label>
                 {{form.username}}
-                <label>Password</label>
+                <label>Mật khẩu</label>
                 {{form.password}}
-                <input type="hidden" name="next" value="/"/><br/>
-               
-                <button type="submit" name="dangnhap">Sign In</button>
+                <input type="hidden" name="next" value="/"/>
+               {% for key,value in form.errors.items %}
+                <p style="color:red"> Vui lòng nhập đúng tài khoản và mật khẩu </p>
+                {% endfor %}
+                <button type="submit" name="dangnhap">Đăng nhập</button>
+                
                 <br>
-                 <p>Nếu chưa có tài khoản vui lòng <a style="color:red" href="{% url 'dangky' %}"><br>Đăng kí</a>!</p>
+                 <p>Nếu chưa có tài khoản vui lòng <a style="color:red" href="{% url 'dangky' %}"><br>Đăng kí</a>! <br>hoặc về <a style="color:red" href="{% url 'home' %}"><br>Trang chủ</a>!</p>
             </form>
         </div>
        
@@ -48,4 +49,6 @@
 
 
 {% endif %}
+{% comment %} <p><a href="{% url 'social:begin' 'facebook' %}?next={% url 'home' %}">Login with Facebook</a></p> {% endcomment %}
+
 {% endblock content %}
