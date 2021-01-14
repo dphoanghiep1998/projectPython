@@ -6,7 +6,7 @@
   - chạy lệnh pip instal django-cleanup
   - clone thư mục git về
   - cd vào thư mục project
-  - chạy lệnh py manage.py runserver để chạy project
+  - chạy lệnh python manage.py runserver để chạy project
 # Các chức năng chính
   - Quản lý của admin : gõ http://127.0.0.1:8000/admin/ : Có thể update tất cả thông tin liên quan đến sách, user , quyền truy cập
   - Đăng nhập , đăng ký tài khoản để up sách, sửa sách ( đang cập nhật hoàn thiện )
