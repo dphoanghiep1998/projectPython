@@ -3,12 +3,15 @@
   - Sử dụng pycharm tạo mới một project
   - Cài đặt python 3.7 hoặc phiên bản cao hơn
   - chạy lệnh pip install django
-  - chạy lệnh pip instal django-cleanup
+  - chạy lệnh pip install django-cleanup
+  - chạy lệnh pip install pillow
+  - chạy lệnh pip install social-auth-app-django
   - clone thư mục git về
   - cd vào thư mục project
   - chạy lệnh python manage.py runserver để chạy project
 # Các chức năng chính
   - Quản lý của admin : gõ http://127.0.0.1:8000/admin/ : Có thể update tất cả thông tin liên quan đến sách, user , quyền truy cập
+  - admin : nghiepvu pass : 1
   - Đăng nhập , đăng ký tài khoản để up sách, sửa sách ( đang cập nhật hoàn thiện )
   - Xem sách, lọc bởi tên tác giả, thể loại,
   - bình luận về sách
